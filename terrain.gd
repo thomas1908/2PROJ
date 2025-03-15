@@ -13,7 +13,7 @@ extends TileMap
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	GenerateTerrain()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,7 +31,9 @@ func GenerateTerrain():
 	
 	var noise = FastNoiseLite.new()
 	noise.noise_type = FastNoiseLite.TYPE_CELLULAR
-	
+	noise.frequency = 0.02  # Ajuste la fréquence pour des cellules plus grandes ou plus petites
+	noise.seed = randi()    # Change à chaque exécution pour de la variation
+		
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	noise.seed = rng.randf_range(0,999999)
